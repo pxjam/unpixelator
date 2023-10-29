@@ -2,9 +2,9 @@ import { Unpixelator } from './unpixelator.js'
 
 const options = {
 	framesDelay: 150,
-	maxPixelSize: 64,
+	maxPixelSize: 32,
 	stepDivisor: 2,
-	initialOpacity: 0.2
+	initialOpacity: 1
 }
 
 const els = document.querySelectorAll('[data-unpixelator]')

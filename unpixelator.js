@@ -52,6 +52,8 @@ export class Unpixelator {
 		this.#adaptCanvasToImg()
 
 		this.#fadeIn().then(() => {
+			this.#cleanup()
+
 			this.isRendered = true
 		})
 	}
@@ -75,7 +77,7 @@ export class Unpixelator {
 	}
 
 	async #sleep(ms) {
-		return new Promise(resolve => setTimeout(resolve, ms))
+		return new Promise((resolve) => setTimeout(resolve, ms))
 	}
 
 	#fadeIn = async () => {
@@ -90,5 +92,18 @@ export class Unpixelator {
 			pixelSize /= this.options.stepDivisor
 			opacity += 1 / stepsCount
 		}
+	}
+
+	#cleanup = () => {
+		this.canvas.style.opacity = '0'
+		this.img.style.opacity = '1'
+
+		this.canvas.remove()
+
+		this.canvas = null
+		this.ctx = null
+
+		this.#scaledDownCanvas = null
+		this.#scaledDownCtx = null
 	}
 }
